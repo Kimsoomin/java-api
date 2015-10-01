@@ -40,7 +40,7 @@ public class HanbitSchool {
 			System.out.println(service.searchByName(searchname));
 				break;
 			case 5: 
-				System.out.println();
+				System.out.println(service.descGradeByTotal());
 				break;
 			case 6: 
 				break;

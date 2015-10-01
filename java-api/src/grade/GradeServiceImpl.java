@@ -1,5 +1,6 @@
 package grade;
 
+import java.util.List;
 import java.util.Vector;
 
 public class GradeServiceImpl implements GradeService{
@@ -63,14 +64,25 @@ public class GradeServiceImpl implements GradeService{
 	}
 
 	@Override
-	public void descGradeByTotal() {
-		
-		
+	public Vector<Grade> descGradeByTotal() {
+		Grade grade = new Grade();
+		Grade temp = new Grade();
+		for (int i = 0; i < vec.size(); i++) {
+			for (int j = 0; j < vec.size(); j++) {
+				if (vec.elementAt(i).getTotal() < vec.elementAt(j).getTotal()) {
+					temp = vec.elementAt(i);
+					vec.set(i, vec.elementAt(j));
+					vec.set(j, temp);
+				}
+			}
+		}
+		return vec;
 	}
 
 	@Override
-	public void ascGradeByName() {
-		// TODO Auto-generated method stub
+	public Vector<Grade> ascGradeByName() {
+		return vec;
+
 		
 	}
 
