@@ -40,6 +40,7 @@ public class HanbitSchool {
 			System.out.println(service.searchByName(searchname));
 				break;
 			case 5: 
+				System.out.println();
 				break;
 			case 6: 
 				break;
