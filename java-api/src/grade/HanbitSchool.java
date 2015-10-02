@@ -1,13 +1,17 @@
 package grade;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class HanbitSchool {
+	private static final int Grade = 0;
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		GradeService service = new GradeServiceImpl();
 		while (true) {
-			System.out.println("1.성적등록 2.학적부리스트보기 3.학번으로검색 4.이름으로검색 5.성적순위출력 6.이름순출력 7.종료");
+			System.out.println("1.성적등록 2.학적부리스트보기 3.학번으로검색 4.이름으로검색 5.성적 상위순으로 순위출력 6.성적 하위순으로 순위 출력(스왑) 7.이름으로 오름차순 출력 8.종료");
 			switch (scanner.nextInt()) {
 			case 1: 
 			System.out.println("학번 입력");
@@ -39,12 +43,22 @@ public class HanbitSchool {
 			service.searchByHak(searchname);
 			System.out.println(service.searchByName(searchname));
 				break;
-			case 5: 
+			case 5: service.descGradeByTotal();
 				System.out.println(service.descGradeByTotal());
 				break;
-			case 6: 
+			case 6: service.acsGradeByTotal();
+					ArrayList<Grade> score = service.ascGradeByTotal();
+					for (int i = 0; i < score.size(); i++) {
+						System.out.println(score.get(i).getTotal());
+					}
 				break;
-			case 7: 
+			case 7: service.ascGradeByName();
+					ArrayList<Grade> name1 = service.getList();
+					for (int i = 0; i < name1.size(); i++) {
+						System.out.println(name1.get(i).getName());
+					}
+				return;
+			case 8 :
 				return;
 			default:break;
 
