@@ -29,12 +29,10 @@ public class MemberServiceImpl implements MemberService {
 		if (map.containsKey(id)) {
 			Member temp = new Member();
 			temp = (Member) map.get(id);
-			if (temp.getId().equals(id) ) {
-				result = "환영합니다. " + temp.getAddr() + "에 사는 " + temp.getAge() + "세 " + temp.getName() + "씨";
-			} else if (!temp.getPass().equals(pass)) {
-				result = " 입력한 비번 틀렸다";
+			if (temp.getId().equals(id)&&temp.getPass().equals(pass)) {
+				result = "환영합니다. "+temp.getAddr()+"에 사는 "+temp.getAge()+"세 "+temp.getName()+"님";
 			} else {
-				result = " 입력한 아이디 안드로메다";
+				result = "입력한 정보가 틀렸습니다.";
 			}
 		}
 		return result;
@@ -42,14 +40,59 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int count() {
-		int num = 0;
-		return num;
+		
+		return map.size();
 	}
+	/*
+	 * ID 로 회원검색
+	 */
 
 	@Override
 	public Member searchById(String id) {
-
-		return null;
+		Member temp = (Member) map.get(id);
+		Member result = null;
+		if (id.equals(temp.getId())) {
+			result = temp;
+		}		
+		return result;
+		
+		//		return (Member) map.get(id);
 	}
 
+	@Override
+	public String changePass(String id, String pass) {
+		String result = null;
+		Member target = (Member) map.get(id);
+		if (target != null) {
+			target.setPass(pass);
+			result = "비밀번호 변경되었습니다.";
+		} else {
+			result = "비민번호가 변경되지 않았습니다.";
+		}
+		return result;
+	}
+
+	@Override
+	public String remove(String id) {
+		Member temp = (Member) map.get(id);
+		String result = null;
+			if (temp.getId().equals(id)) {
+				map.remove(id);
+				result = "입력하신 ID "+temp.getId()+ "를 삭제하였습니다";
+			} else {
+				result = "입력한 정보가 틀렸습니다.";
+			}
+
+		return result;
+		/*
+		 * String result = null;
+		 * object m = map.remove(id);	리턴값이 value
+		 * if ( m != null ){
+		 * result = "입력한 id 가 삭제"
+		 * }else{
+		 * }
+		 * return result
+		 * }
+		 */
+	}
 }

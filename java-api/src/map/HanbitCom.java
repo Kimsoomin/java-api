@@ -4,15 +4,22 @@ import java.util.Scanner;
 
 public class HanbitCom {
 	/**
-	 * "안녕하세요" .substring(0.2); => 0이상 2미만 "안녕" "안녕하세요" .substring(1.3); => 1이상
-	 * 3미만 "녕하"
+	 * "안녕하세요" .substring(0.2); => 0이상 2미만 "안녕" 
+	 * "안녕하세요" .substring(1.3); => 1이상 3미만 "녕하"
 	 */
 
 	public static void main(String[] args) {
+		/**
+		 * CRUD
+		 * Create : 추가
+		 * Read   : 검색
+		 * Update : 수정
+		 * Delete : 삭제
+		 */
 		Scanner scanner = new Scanner(System.in);
 		MemberService service = new MemberServiceImpl();
 		while (true) {
-			System.out.println("1번.회원가입 2.로그인 3.총회원수 4.ID검색 5.종료");
+			System.out.println("1번.회원가입 2.로그인 3.총회원수 4.ID검색 5.비번수정 6회원탈퇴 .7.종료");
 			switch (scanner.nextInt()) {
 			case 1:
 				System.out.println("아이디");
@@ -51,10 +58,23 @@ public class HanbitCom {
 				break;
 			case 4:
 				System.out.println("검색할 아이디 입력");
-				service.searchById(scanner.next());
+				System.out.println(service.searchById(scanner.next()));
 				break;
+			//	
 			case 5:
-				return;
+				System.out.println("ID: ");
+				id = scanner.next();
+				System.out.println("Pass");
+				pass = scanner.next();
+				System.out.println(service.changePass(id, pass));
+				break;
+			case 6:
+				System.out.println("삭제할 ID 입력");
+				String delete = scanner.next();
+				System.out.println(service.remove(delete));
+				break;
+			case 7:
+				break;
 			default:
 				break;
 			}
