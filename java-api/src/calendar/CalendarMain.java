@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import grade.Grade;
+
 /**
  * @file_name : CalendarMain.java
  * author     : soomin0322@naver.com
@@ -17,9 +19,11 @@ public class CalendarMain {
 	 * 2016-02-05 에서 오늘 날짜까지 남은 일수 구하기 (D-**) 
 	 */
 	public static void main(String[] args) {
+		Grade g = new Grade();
+		g.getHak();		// 인스턴스가 호출
 		Scanner scanner = new Scanner(System.in);
 //		Calendar startDay = Calendar.getInstance();
-		Calendar today = Calendar.getInstance();
+		Calendar today = Calendar.getInstance();	// 스태틱 메소드, rt.jar 에 getInstance() 위치값(주소)를 호출
 		Daycount daycount = new Daycount();
 		
 //		int year=2015, month=9, date=14;		
