@@ -17,7 +17,8 @@ public class HanbitCom {
 		 * Delete : 삭제
 		 */
 		Scanner scanner = new Scanner(System.in);
-		MemberService service = new MemberServiceImpl();
+		MemberService service = MemberServiceImpl.getInstance();
+		Member m = new Member();
 		while (true) {
 			System.out.println("1번.회원가입 2.로그인 3.총회원수 4.ID검색 5.비번수정 6회원탈퇴 .7.종료");
 			switch (scanner.nextInt()) {
